@@ -94,7 +94,9 @@ def bruteforce_dir(wordqueue, sitesfound):
 				sitesfound.put(URLToCheck)
 				check_dataleaks(urlResponse)
 			except urllib.error.HTTPError as e:
-				pass
+				if(e.code == 403):
+					print(Fore.GREEN + '[' + str(e.code) + '] => ' + URLToCheck)
+					sitesfound.put(URLToCheck)
 			except urllib.error.URLError as e:
 				pass
 			except Exception as e:
